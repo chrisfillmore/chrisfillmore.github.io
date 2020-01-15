@@ -65,7 +65,7 @@ h1, h2 {
 }
 
 .contact-block {
-  padding: 1em 1em 1em 30px;
+  padding: 0.5em 0.5em 0.5em 30px;
   display: inline-block;
   background-position: center left;
   background-size: 1.5em;
@@ -82,4 +82,8 @@ h1, h2 {
 
 .github {
   background-image: url('asset/GitHub-Mark-64px.png');
+}
+
+.intro {
+  margin-bottom: 0.5em;
 }
