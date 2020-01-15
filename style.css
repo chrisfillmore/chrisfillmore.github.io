@@ -59,6 +59,27 @@ h1, h2 {
 .fast-facts p {
   margin-bottom: 0;
 }
+
 .fast-facts ul {
   margin-top: 0;
+}
+
+.contact-block {
+  padding: 1em 1em 1em 30px;
+  display: inline-block;
+  background-position: center left;
+  background-size: 1.5em;
+  background-repeat: no-repeat;
+}
+
+.email {
+  background-image: url('asset/baseline_mail_outline_black_48dp.png');
+}
+
+.linkedin {
+  background-image: url('asset/li_logo_resized_grey_64px.png');
+}
+
+.github {
+  background-image: url('asset/GitHub-Mark-64px.png');
 }
