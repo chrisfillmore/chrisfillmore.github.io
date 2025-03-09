@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HN by the hour</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .submission {
+        padding: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hacker News</h1>
+    <div id="submissions"></div>
+    <script>
+      const url = "https://dezmu6imh733yawmyisfni2skm0rdbgl.lambda-url.us-east-2.on.aws/"
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw response
+          }
+  
+          return response.json()
+        })
+        .then((json) => {
+          const html = "<ol>" + json
+            .reduce(
+              (html, {title, url}, index) => `${html}<li class="submission"><a href=${url}>${title}</a></li>`,
+              ""
+            ) + "</ol>"
+          document.getElementById("submissions").innerHTML = html
+        })
+        .catch(console.error)
+    </script>
+  </body>
+</html>
