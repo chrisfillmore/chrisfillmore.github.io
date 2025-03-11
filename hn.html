@@ -13,26 +13,37 @@
   </head>
   <body>
     <h1>Hacker News</h1>
-    <div id="submissions"></div>
+    <div id="submissions"><button id="loadButton">Load</button></div>
     <script>
-      const url = "https://dezmu6imh733yawmyisfni2skm0rdbgl.lambda-url.us-east-2.on.aws/"
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw response
-          }
-  
-          return response.json()
-        })
-        .then((json) => {
-          const html = "<ol>" + json
-            .reduce(
-              (html, {title, url}, index) => `${html}<li class="submission"><a href=${url}>${title}</a></li>`,
-              ""
-            ) + "</ol>"
-          document.getElementById("submissions").innerHTML = html
-        })
-        .catch(console.error)
+      const loadButton = document.querySelector("button")
+      
+      loadButton.addEventListener("click", () => {
+        loadButton.disabled = true
+        loadButton.textContent = "Loading..."
+        timeout = setInterval(() => {
+          loadButton.textContent = loadButton.textContent + "."
+        }, 500)
+        
+        fetch("https://dezmu6imh733yawmyisfni2skm0rdbgl.lambda-url.us-east-2.on.aws/")
+          .then((response) => {
+            if (!response.ok) {
+              throw response
+            }
+    
+            return response.json()
+          })
+          .then((json) => {
+            const html = "<ol>" + json
+              .reduce(
+                (html, {title, url}, index) => `${html}<li class="submission"><a href=${url}>${title}</a></li>`,
+                ""
+              ) + "</ol>"
+            document.getElementById("submissions").innerHTML = html
+          })
+          .catch(console.error)
+          .then(() => clearTimeout(timeout))
+
+      })
     </script>
   </body>
 </html>
